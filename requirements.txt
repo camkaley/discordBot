@@ -1,3 +1,5 @@
 python-dotenv
-discord
+discord 
+django
 gunicorn
+django-heroku
