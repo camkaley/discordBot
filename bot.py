@@ -9,7 +9,7 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 SERVER = os.getenv('DISCORD_SERVER')
 TARGET = os.getenv('TARGET')
-REYME = os.getenv('REYNE')
+REYNE = os.getenv('REYNE')
 
 print(TOKEN)
 
@@ -68,10 +68,8 @@ async def on_message(message):
 
     #if its reyne being a retard
     if str(message.author) == REYNE:
-        if message.content.find("Test") == 1:
-            await message.channel.send("yes")
-        else:
-            await message.channel.send("no")
+        if message.content.find("@boys") == 0 or message.content.find("@Boys") == 0:
+            await message.delete()
 
     #if its anyone else
     else:
