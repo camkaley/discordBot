@@ -9,6 +9,9 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 SERVER = os.getenv('DISCORD_SERVER')
 TARGET = os.getenv('TARGET')
+REYME = os.getenv('REYNE')
+
+print(TOKEN)
 
 client = discord.Client()
 insults = [
@@ -63,11 +66,18 @@ async def on_message(message):
             print(f'{message.author} - {message.content}')
             await message.channel.send(getMessage())
 
+    #if its reyne being a retard
+    if str(message.author) == REYNE:
+        if message.content.find("Test") == 1:
+            await message.channel.send("yes")
+        else:
+            await message.channel.send("no")
+
     #if its anyone else
     else:
         if rollMessage(60):
             if rollMessage(5):
-                changeTarget(message.author)
+                changeTarget(TARGET, message.author)
             else:            
                 print('Message:')
                 print(f'{message.author} - {message.content}')
@@ -79,9 +89,9 @@ def rollMessage(chance):
     else:
         return False
 
-def changeTarget(newTarget):
+def changeTarget(oldTarget, newTarget):
     message.channel.send("Nope thats fucking it, ive had enough")
-    message.channel.sennd(f'@{TARGET} - Im done with you. Your turn @{str(newTarget)}')
+    message.channel.sennd(f'@{str(oldTarget)} - Im done with you. Your turn @{str(newTarget)}')
     TARGET = str(newTarget)
 
 client.run(TOKEN)
