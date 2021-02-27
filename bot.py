@@ -61,7 +61,7 @@ async def on_message(message):
     
     #if its the target
     if str(message.author) == TARGET:
-        if rollMessage(15):          
+        if rollMessage(10):          
             print('Message:')
             print(f'{message.author} - {message.content}')
             await message.channel.send(getMessage())
@@ -73,7 +73,7 @@ async def on_message(message):
 
     #if its anyone else
     else:
-        if rollMessage(60):
+        if rollMessage(20):
             if rollMessage(5):
                 changeTarget(TARGET, message.author)
             else:            
