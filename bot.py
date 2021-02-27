@@ -40,6 +40,23 @@ insults = [
     "You're seriously as sharp as a spoon hey?"
 ]
 
+emojiList = [
+    "btc",
+    "elmo",
+    "sadsully",
+    "sadfugg",
+    "concernedfrog",
+    "KSI",
+    "stickem",
+    "yamba",
+    "doit",
+    "African",
+    "lard",
+    "reyne",
+    "gerry",
+    "catjam"
+]
+
 def getMessage():
     return random.choice(insults)
 
@@ -53,8 +70,21 @@ def findServer():
         if guild.name == SERVER:
             return guild
 
+async def reactRandomEmoji(message):
+    guild = findServer()
+    newEmoji = random.choice(emojiList)
+    emoji = discord.utils.get(guild.emojis, name=newEmoji)
+    if emoji:
+        await message.add_reaction(emoji)
+        
+
 @client.event
 async def on_message(message):
+
+    #Chance to react to message
+    if(rollMessage(12)):
+        await reactRandomEmoji(message)
+
     #if its the bot
     if str(message.author) == client.user:
         return
