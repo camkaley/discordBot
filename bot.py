@@ -75,7 +75,7 @@ async def on_message(message):
     else:
         if rollMessage(20):
             if rollMessage(5):
-                changeTarget(TARGET, message.author)
+                changeTarget(TARGET, message.author, message)
             else:            
                 print('Message:')
                 print(f'{message.author} - {message.content}')
@@ -87,7 +87,7 @@ def rollMessage(chance):
     else:
         return False
 
-def changeTarget(oldTarget, newTarget):
+def changeTarget(oldTarget, newTarget, message):
     message.channel.send("Nope thats fucking it, ive had enough")
     message.channel.sennd(f'@{str(oldTarget)} - Im done with you. Your turn @{str(newTarget)}')
     TARGET = str(newTarget)
